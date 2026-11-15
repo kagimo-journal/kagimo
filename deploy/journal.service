@@ -1,0 +1,84 @@
+# systemd *system* unit for the journal server on journal.local.
+#
+# Install (deploy/install-selfhost.sh prints these steps; it never runs sudo itself):
+#   sudo useradd --system --user-group --home-dir /var/lib/journal --no-create-home \
+#        --shell /usr/bin/nologin journal
+#   sudo install -o root -g root -m 0755 bin/journal /usr/local/bin/journal
+#   sudo install -o root -g root -m 0644 deploy/journal.service /etc/systemd/system/journal.service
+#   sudo systemctl daemon-reload && sudo systemctl enable --now journal
+#
+# The service runs as the unprivileged `journal` user. It can write only to its state
+# directory /var/lib/journal (journal.db, secret.key); the rest of the file system is
+# read-only, /home is invisible, and it can only talk to loopback.
+# Check the sandbox with: systemd-analyze security journal.service
+
+[Unit]
+Description=Kagimo (end-to-end encrypted journal server)
+After=network.target
+
+[Service]
+Type=simple
+User=journal
+Group=journal
+ExecStart=/usr/local/bin/journal \
+    -addr 127.0.0.1:8080 \
+    -data /var/lib/journal \
+    -origin https://journal.local \
+    -rp-id journal.local
+# /var/lib/journal, created and chowned to journal:journal by systemd, mode 0700.
+StateDirectory=journal
+StateDirectoryMode=0700
+WorkingDirectory=/var/lib/journal
+# journal.db and secret.key are readable by the service user only.
+UMask=0077
+# Soft memory limit for the Go runtime: near it the garbage collector works harder rather
+# than the heap growing on. The server needs far less in normal use (it hashes at most
+# three Argon2 secrets, 19 MiB each, at once); lower it on a host with less memory to spare.
+Environment=GOMEMLIMIT=256MiB
+
+# The server shuts down gracefully on SIGTERM.
+KillSignal=SIGTERM
+TimeoutStopSec=20
+Restart=on-failure
+RestartSec=3
+
+# --- sandbox ---
+NoNewPrivileges=yes
+CapabilityBoundingSet=
+AmbientCapabilities=
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+PrivateUsers=yes
+PrivateIPC=yes
+DevicePolicy=closed
+ProtectHostname=yes
+ProtectClock=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectControlGroups=yes
+ProtectProc=invisible
+ProcSubset=pid
+KeyringMode=private
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+RemoveIPC=yes
+# Listens on 127.0.0.1 for Caddy; needs no other network access (no outbound
+# connections at all). AF_UNIX is kept for logging to the journal.
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+IPAddressAllow=localhost
+IPAddressDeny=any
+SocketBindAllow=tcp:8080
+SocketBindDeny=any
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+SystemCallFilter=~@privileged
+SystemCallErrorNumber=EPERM
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Journal style guide</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0;background:#F7F4EF}
+a{color:#2F4F6B}a:hover{color:#1E3A52}
+</style>
+</helmet>
+<div style="width: 1280px; height: 1680px; box-sizing: border-box; padding: 72px 80px; background: #F7F4EF; color: #1E1C19; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; gap: 64px;">
+
+  <header style="display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid #E4DED4; padding-bottom: 32px;">
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <div style="font-family: Newsreader, Georgia, serif; font-size: 40px; letter-spacing: -0.01em;">journal<span style="color: #2F4F6B;">.</span></div>
+      <p style="margin: 0; font-size: 15px; color: #615B52; max-width: 560px; line-height: 1.55;">A quiet place to write. Everything is encrypted in your browser before it leaves, so the server, and whoever runs it, only ever holds ciphertext.</p>
+    </div>
+    <div style="display: flex; gap: 32px; font-size: 13px; color: #615B52;">
+      <div style="display: flex; flex-direction: column; gap: 4px;"><span style="font-weight: 600; color: #1E1C19;">Quiet by default</span><span>Chrome fades while you write.</span></div>
+      <div style="display: flex; flex-direction: column; gap: 4px;"><span style="font-weight: 600; color: #1E1C19;">Trust is visible</span><span>Lock state is one glance away.</span></div>
+      <div style="display: flex; flex-direction: column; gap: 4px;"><span style="font-weight: 600; color: #1E1C19;">Honest about keys</span><span>We never promise recovery we can't do.</span></div>
+    </div>
+  </header>
+
+  <section style="display: flex; flex-direction: column; gap: 20px;">
+    <h2 style="margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #615B52;">Colour</h2>
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+      <div style="display: flex; gap: 16px; align-items: flex-start;">
+        <div style="width: 72px; font-size: 13px; color: #615B52; padding-top: 26px;">Light</div>
+        <sc-for list="{{light}}" as="s" hint-placeholder-count="7">
+          <div style="width: 140px; display: flex; flex-direction: column; gap: 8px;">
+            <div style="height: 72px; border-radius: 8px; border: 1px solid #E4DED4; background: {{s.hex}};"></div>
+            <div style="display: flex; flex-direction: column; gap: 2px;">
+              <span style="font-size: 13px; font-weight: 500;">{{s.name}}</span>
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #615B52;">{{s.hex}}</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display: flex; gap: 16px; align-items: flex-start;">
+        <div style="width: 72px; font-size: 13px; color: #615B52; padding-top: 26px;">Dark</div>
+        <sc-for list="{{dark}}" as="s" hint-placeholder-count="7">
+          <div style="width: 140px; display: flex; flex-direction: column; gap: 8px;">
+            <div style="height: 72px; border-radius: 8px; border: 1px solid #2E2B27; background: {{s.hex}};"></div>
+            <div style="display: flex; flex-direction: column; gap: 2px;">
+              <span style="font-size: 13px; font-weight: 500;">{{s.name}}</span>
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #615B52;">{{s.hex}}</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 20px;">
+    <h2 style="margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #615B52;">Type</h2>
+    <div style="display: grid; grid-template-columns: 220px minmax(0, 1fr); row-gap: 28px; column-gap: 32px; align-items: baseline;">
+      <div style="font-size: 13px; color: #615B52; line-height: 1.5;">Entry title<br>Newsreader 40 / 1.15</div>
+      <div style="font-family: Newsreader, Georgia, serif; font-size: 40px; line-height: 1.15; letter-spacing: -0.01em;">A long walk after the rain</div>
+
+      <div style="font-size: 13px; color: #615B52; line-height: 1.5;">Writing<br>Newsreader 21 / 1.7, 680 measure</div>
+      <p style="margin: 0; font-family: Newsreader, Georgia, serif; font-size: 21px; line-height: 1.7; max-width: 680px;">The river was higher than I expected. I stood on the footbridge for a long time, not thinking about anything in particular, which is <em>exactly</em> what I came for.</p>
+
+      <div style="font-size: 13px; color: #615B52; line-height: 1.5;">Date line<br>Inter 12, caps, +0.08em</div>
+      <div style="font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #615B52;">Tuesday · 11 November 2026 · 21:40</div>
+
+      <div style="font-size: 13px; color: #615B52; line-height: 1.5;">Interface<br>Inter 15 / 14 / 13</div>
+      <div style="display: flex; gap: 32px; align-items: baseline;"><span style="font-size: 15px; font-weight: 500;">Continue with passkey</span><span style="font-size: 14px;">Search entries on this device</span><span style="font-size: 13px; color: #615B52;">Saved · 2 seconds ago</span></div>
+
+      <div style="font-size: 13px; color: #615B52; line-height: 1.5;">Keys &amp; codes<br>IBM Plex Mono 15</div>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 15px; letter-spacing: 0.04em;">K7QF-2M9D-XW4R-HB6T-PL3N-8VZC</div>
+    </div>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 20px;">
+    <h2 style="margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #615B52;">Components</h2>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px;">
+
+      <div style="background: #FFFDF9; border: 1px solid #E4DED4; border-radius: 12px; padding: 28px; display: flex; flex-direction: column; gap: 14px;">
+        <div style="font-size: 13px; color: #615B52;">Buttons — 44px, radius 8</div>
+        <button type="button" style="height: 44px; border: 0; border-radius: 8px; background: #2F4F6B; color: #FFFFFF; font: 500 15px Inter, sans-serif; display: flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"></circle><path d="M10.8 12.2 20 3"></path><path d="M16 7l3 3"></path><path d="M18 5l2 2"></path></svg>
+          Continue with passkey
+        </button>
+        <button type="button" style="height: 44px; border: 1px solid #D6CFC3; border-radius: 8px; background: #FFFDF9; color: #1E1C19; font: 500 15px Inter, sans-serif; cursor: pointer;">Use password instead</button>
+        <div style="display: flex; gap: 12px;">
+          <button type="button" style="flex: 1; height: 44px; border: 0; border-radius: 8px; background: transparent; color: #615B52; font: 500 15px Inter, sans-serif; cursor: pointer;">Cancel</button>
+          <button type="button" style="flex: 1; height: 44px; border: 0; border-radius: 8px; background: transparent; color: #9A3B2E; font: 500 15px Inter, sans-serif; cursor: pointer;">Decline</button>
+        </div>
+      </div>
+
+      <div style="background: #FFFDF9; border: 1px solid #E4DED4; border-radius: 12px; padding: 28px; display: flex; flex-direction: column; gap: 14px;">
+        <div style="font-size: 13px; color: #615B52;">Field</div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <label for="sg-pass" style="font-size: 14px; font-weight: 500;">Passphrase</label>
+          <input id="sg-pass" type="password" value="correct horse battery" style="height: 44px; box-sizing: border-box; border: 1px solid #2F4F6B; box-shadow: 0 0 0 3px rgba(47,79,107,0.15); border-radius: 8px; padding: 0 14px; font: 15px Inter, sans-serif; background: #FFFFFF; color: #1E1C19; outline: none;">
+          <div style="display: flex; gap: 4px; margin-top: 4px;">
+            <div style="flex: 1; height: 3px; border-radius: 2px; background: #2F4F6B;"></div>
+            <div style="flex: 1; height: 3px; border-radius: 2px; background: #2F4F6B;"></div>
+            <div style="flex: 1; height: 3px; border-radius: 2px; background: #2F4F6B;"></div>
+            <div style="flex: 1; height: 3px; border-radius: 2px; background: #E4DED4;"></div>
+          </div>
+          <span style="font-size: 13px; color: #615B52;">Strong. Four or more unrelated words works well.</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <label for="sg-code" style="font-size: 14px; font-weight: 500;">Authenticator code</label>
+          <input id="sg-code" type="text" inputmode="numeric" value="482 913" style="height: 44px; box-sizing: border-box; border: 1px solid #D6CFC3; border-radius: 8px; padding: 0 14px; font: 500 18px 'IBM Plex Mono', monospace; letter-spacing: 0.2em; background: #FFFFFF; color: #1E1C19;">
+        </div>
+      </div>
+
+      <div style="background: #FFFDF9; border: 1px solid #E4DED4; border-radius: 12px; padding: 28px; display: flex; flex-direction: column; gap: 18px;">
+        <div style="font-size: 13px; color: #615B52;">Status &amp; notices</div>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <span style="display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px; border-radius: 14px; background: #EAEFF3; color: #2F4F6B; font-size: 13px; font-weight: 500;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+            Encrypted · saved
+          </span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px; border-radius: 14px; background: #F1ECE4; color: #615B52; font-size: 13px; font-weight: 500;">Saving…</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px; border-radius: 14px; background: #F6E7E3; color: #9A3B2E; font-size: 13px; font-weight: 500;">Offline · kept locally</span>
+        </div>
+        <div style="border-radius: 8px; background: #F1ECE4; padding: 14px 16px; display: flex; gap: 12px; font-size: 14px; line-height: 1.5;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2F4F6B" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px;"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path></svg>
+          <span>Notices are calm, not alarming. They state what is true and what you can do, in one or two sentences.</span>
+        </div>
+        <div style="display: inline-flex; align-self: flex-start; align-items: center; gap: 2px; padding: 4px; border-radius: 10px; background: #1E1C19; color: #F7F4EF;">
+          <button type="button" aria-label="Bold" style="width: 36px; height: 36px; border: 0; border-radius: 6px; background: transparent; color: inherit; font: 600 16px Newsreader, serif; cursor: pointer;">B</button>
+          <button type="button" aria-label="Italic" style="width: 36px; height: 36px; border: 0; border-radius: 6px; background: transparent; color: inherit; font: italic 16px Newsreader, serif; cursor: pointer;">I</button>
+          <button type="button" aria-label="Heading" style="width: 36px; height: 36px; border: 0; border-radius: 6px; background: #3A3733; color: inherit; font: 500 15px Newsreader, serif; cursor: pointer;">H</button>
+          <button type="button" aria-label="Quote" style="width: 36px; height: 36px; border: 0; border-radius: 6px; background: transparent; color: inherit; font: 20px Newsreader, serif; cursor: pointer;">“</button>
+          <button type="button" aria-label="Link" style="width: 36px; height: 36px; border: 0; border-radius: 6px; background: transparent; color: inherit; display: flex; align-items: center; justify-content: center; cursor: pointer;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.66 0l3-3a4 4 0 0 0-5.66-5.66l-1 1"></path><path d="M14 10a4 4 0 0 0-5.66 0l-3 3a4 4 0 0 0 5.66 5.66l1-1"></path></svg></button>
+        </div>
+        <span style="font-size: 13px; color: #615B52; margin-top: -8px;">Selection toolbar: appears only over selected text.</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px;">
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <h2 style="margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #615B52;">Entry list</h2>
+      <div style="background: #FFFDF9; border: 1px solid #E4DED4; border-radius: 12px; padding: 8px;">
+        <a href="#" style="display: flex; gap: 16px; padding: 14px 16px; border-radius: 8px; background: #EFEAE2; text-decoration: none; color: #1E1C19;">
+          <span style="font-family: Newsreader, serif; font-size: 28px; line-height: 1; width: 36px;">11</span>
+          <span style="display: flex; flex-direction: column; gap: 4px; min-width: 0;"><span style="font-family: Newsreader, serif; font-size: 17px;">A long walk after the rain</span><span style="font-size: 13px; color: #615B52; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">The river was higher than I expected. I stood on the footbridge…</span></span>
+        </a>
+        <a href="#" style="display: flex; gap: 16px; padding: 14px 16px; border-radius: 8px; text-decoration: none; color: #1E1C19;">
+          <span style="font-family: Newsreader, serif; font-size: 28px; line-height: 1; width: 36px; color: #615B52;">09</span>
+          <span style="display: flex; flex-direction: column; gap: 4px; min-width: 0;"><span style="font-family: Newsreader, serif; font-size: 17px;">Sunday, slow</span><span style="font-size: 13px; color: #615B52;">Coffee, the crossword, nothing else.</span></span>
+        </a>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <h2 style="margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #615B52;">Image drop</h2>
+      <div style="height: 172px; box-sizing: border-box; border: 1.5px dashed #2F4F6B; border-radius: 12px; background: rgba(47,79,107,0.05); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: #2F4F6B;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="10" r="2"></circle><path d="M21 16l-5-5L6 20"></path></svg>
+        <span style="font-size: 15px; font-weight: 500;">Drop to add to this entry</span>
+        <span style="font-size: 13px; color: #615B52;">Images are encrypted on this device before upload.</span>
+      </div>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1680}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      light: [
+        { name: 'Paper', hex: '#F7F4EF' }, { name: 'Surface', hex: '#FFFDF9' }, { name: 'Ink', hex: '#1E1C19' },
+        { name: 'Muted', hex: '#615B52' }, { name: 'Hairline', hex: '#E4DED4' }, { name: 'Accent', hex: '#2F4F6B' },
+        { name: 'Danger', hex: '#9A3B2E' }
+      ],
+      dark: [
+        { name: 'Paper', hex: '#171614' }, { name: 'Surface', hex: '#1F1D1A' }, { name: 'Ink', hex: '#ECE7DF' },
+        { name: 'Muted', hex: '#A39B8F' }, { name: 'Hairline', hex: '#2E2B27' }, { name: 'Accent', hex: '#9DB7CF' },
+        { name: 'Danger', hex: '#D98B7E' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

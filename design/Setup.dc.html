@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Secure your account</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0;background:#F7F4EF}
+a{color:#2F4F6B}a:hover{color:#1E3A52}
+</style>
+</helmet>
+<div style="min-height: 1080px; box-sizing: border-box; background: #F7F4EF; color: #1E1C19; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column;">
+  <header style="padding: 28px 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+    <div style="font-family: Newsreader, Georgia, serif; font-size: 24px;">journal<span style="color: #2F4F6B;">.</span></div>
+    <ol style="margin: 0; padding: 0; list-style: none; display: flex; gap: 24px; font-size: 13px; color: #615B52;">
+      <li style="display: flex; align-items: center; gap: 8px;"><span style="width: 22px; height: 22px; border-radius: 11px; background: #EAEFF3; color: #2F4F6B; display: flex; align-items: center; justify-content: center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></span>Account</li>
+      <li style="display: flex; align-items: center; gap: 8px; color: #1E1C19; font-weight: 500;"><span style="width: 22px; height: 22px; border-radius: 11px; background: #2F4F6B; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 12px;">2</span>Secure</li>
+      <li style="display: flex; align-items: center; gap: 8px;"><span style="width: 22px; height: 22px; box-sizing: border-box; border-radius: 11px; border: 1px solid #D6CFC3; display: flex; align-items: center; justify-content: center; font-size: 12px;">3</span>Approval</li>
+    </ol>
+  </header>
+  <main style="flex: 1; display: flex; justify-content: center; padding: 24px 16px 80px;">
+    <div style="width: 100%; max-width: 960px; display: flex; flex-direction: column; gap: 28px;">
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <h1 style="margin: 0; font-family: Newsreader, Georgia, serif; font-weight: 400; font-size: 40px; letter-spacing: -0.01em;">Secure your account</h1>
+        <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #615B52; max-width: 640px;">Add at least one second factor. A passkey is the quickest. Your device can also unlock the journal with it, so you won't have to type your passphrase every time.</p>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 24px;">
+        <section style="flex: 1 1 380px; background: #FFFDF9; border: 1px solid #E4DED4; border-radius: 12px; padding: 28px; display: flex; flex-direction: column; gap: 18px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h2 style="margin: 0; font-size: 17px; font-weight: 600;">Passkey</h2>
+            <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #2F4F6B;">Recommended</span>
+          </div>
+          <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #615B52;">Sign in with your fingerprint, face or security key. Nothing to type, nothing to phish.</p>
+          <ul style="margin: 0; padding: 0; list-style: none; border: 1px solid #E4DED4; border-radius: 8px;">
+            <li style="display: flex; align-items: center; gap: 12px; padding: 14px 16px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2F4F6B" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"></circle><path d="M10.8 12.2 20 3"></path><path d="M16 7l3 3"></path><path d="M18 5l2 2"></path></svg>
+              <span style="flex: 1; display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 14px; font-weight: 500;">This laptop</span><span style="font-size: 13px; color: #615B52;">Added just now · can unlock journal</span></span>
+              <button type="button" style="height: 36px; padding: 0 12px; border: 0; border-radius: 6px; background: transparent; color: #615B52; font: 500 14px Inter, sans-serif; cursor: pointer;">Rename</button>
+            </li>
+          </ul>
+          <button type="button" style="height: 44px; border: 1px solid #D6CFC3; border-radius: 8px; background: #FFFDF9; color: #1E1C19; font: 500 15px Inter, sans-serif; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+            Add another passkey
+          </button>
+        </section>
+
+        <section style="flex: 1 1 380px; background: #FFFDF9; border: 1px solid #E4DED4; border-radius: 12px; padding: 28px; display: flex; flex-direction: column; gap: 18px;">
+          <h2 style="margin: 0; font-size: 17px; font-weight: 600;">Authenticator app</h2>
+          <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #615B52;">Scan with any authenticator app, then enter the 6-digit code it shows.</p>
+          <div style="display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap;">
+            <div role="img" aria-label="QR code placeholder" style="width: 132px; height: 132px; flex: none; box-sizing: border-box; border: 1px dashed #D6CFC3; border-radius: 8px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #615B52;">QR code</div>
+            <div style="flex: 1 1 160px; display: flex; flex-direction: column; gap: 12px;">
+              <div style="display: flex; flex-direction: column; gap: 4px;">
+                <span style="font-size: 13px; color: #615B52;">Or enter this key</span>
+                <span style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; letter-spacing: 0.04em; line-height: 1.5;">JBSW Y3DP EHPK 3PXP</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <label for="st-code" style="font-size: 14px; font-weight: 500;">Code</label>
+                <input id="st-code" type="text" inputmode="numeric" autocomplete="one-time-code" placeholder="000 000" style="height: 44px; box-sizing: border-box; border: 1px solid #D6CFC3; border-radius: 8px; padding: 0 14px; font: 500 18px 'IBM Plex Mono', monospace; letter-spacing: 0.2em; background: #FFFFFF; color: #1E1C19;">
+              </div>
+            </div>
+          </div>
+          <button type="button" style="height: 44px; border: 1px solid #D6CFC3; border-radius: 8px; background: #FFFDF9; color: #1E1C19; font: 500 15px Inter, sans-serif; cursor: pointer;">Verify code</button>
+        </section>
+      </div>
+
+      <section style="background: #FFFDF9; border: 1px solid #E4DED4; border-radius: 12px; padding: 28px; display: flex; flex-direction: column; gap: 18px;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; flex-wrap: wrap;">
+          <div style="display: flex; flex-direction: column; gap: 6px; max-width: 560px;">
+            <h2 style="margin: 0; font-size: 17px; font-weight: 600;">Recovery key</h2>
+            <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #615B52;">If you forget your passphrase, this key is the only way back into your entries. Keep it somewhere safe and offline. We won't show it again.</p>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button type="button" style="height: 40px; padding: 0 14px; border: 1px solid #D6CFC3; border-radius: 8px; background: #FFFDF9; color: #1E1C19; font: 500 14px Inter, sans-serif; cursor: pointer;">Copy</button>
+            <button type="button" style="height: 40px; padding: 0 14px; border: 1px solid #D6CFC3; border-radius: 8px; background: #FFFDF9; color: #1E1C19; font: 500 14px Inter, sans-serif; cursor: pointer;">Download .txt</button>
+            <button type="button" style="height: 40px; padding: 0 14px; border: 1px solid #D6CFC3; border-radius: 8px; background: #FFFDF9; color: #1E1C19; font: 500 14px Inter, sans-serif; cursor: pointer;">Print</button>
+          </div>
+        </div>
+        <div style="border-radius: 8px; background: #F1ECE4; padding: 20px 24px; font-family: 'IBM Plex Mono', monospace; font-size: 17px; letter-spacing: 0.06em; line-height: 1.8; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px 24px;">
+          <span>K7QF-2M9D</span><span>XW4R-HB6T</span><span>PL3N-8VZC</span><span>4JTE-QR7Y</span>
+          <span>M2KD-9FWA</span><span>ZC6P-L8HN</span><span>T3VX-B5QJ</span><span>R9GE-W4MU</span>
+        </div>
+        <label style="display: flex; gap: 12px; align-items: center; font-size: 14px; cursor: pointer;">
+          <input type="checkbox" style="width: 18px; height: 18px; margin: 0; accent-color: #2F4F6B;">
+          <span>I've saved my recovery key somewhere safe.</span>
+        </label>
+      </section>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;">
+        <a href="SignUp.dc.html" style="font-size: 14px; font-weight: 500;">Back</a>
+        <a href="Pending.dc.html" style="height: 48px; padding: 0 28px; border-radius: 8px; background: #2F4F6B; color: #FFFFFF; font: 500 15px Inter, sans-serif; display: flex; align-items: center; text-decoration: none;">Finish and request approval</a>
+      </div>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1080}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+/* ===== Views: Write · Timeline · Books, the user chip, the slim header ===== */
+.view-nav { display: flex; gap: 4px; }
+.view-nav .view-link {
+  height: 36px; padding: 0 14px; display: inline-flex; align-items: center; justify-content: center; border-radius: 8px;
+  font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap;
+}
+.view-nav .view-link:hover { color: var(--ink); background: color-mix(in srgb, var(--sel) 60%, transparent); }
+.view-nav .view-link[aria-current='page'] { color: var(--ink); background: var(--sel); }
+
+/* compact segmented control (mobile list) */
+.view-nav.segmented { padding: 4px; border-radius: 10px; background: var(--sel); gap: 2px; }
+.view-nav.segmented .view-link { flex: 1; min-height: 40px; height: auto; border-radius: 7px; color: var(--ink); }
+.view-nav.segmented .view-link:hover { background: color-mix(in srgb, var(--surface) 50%, transparent); }
+.view-nav.segmented .view-link[aria-current='page'] { background: var(--surface); box-shadow: 0 1px 2px rgba(30, 28, 25, 0.12); }
+
+/* in the editor's sidebar head */
+.view-nav.in-sidebar { margin: -6px 0 -4px; }
+.view-nav.in-sidebar .view-link { flex: 1; padding: 0 8px; }
+
+.user-chip {
+  height: 36px; padding: 0 12px 0 7px; display: inline-flex; align-items: center; gap: 8px; border-radius: 18px;
+  border: 1px solid var(--hairline); font-size: 14px; font-weight: 500; color: var(--ink); text-decoration: none; min-width: 0;
+}
+.user-chip:hover { background: var(--sel); color: var(--ink); }
+.user-chip .avatar {
+  width: 22px; height: 22px; border-radius: 11px; flex: none; background: var(--accent); color: var(--accent-ink);
+  font-size: 12px; line-height: 1; display: inline-flex; align-items: center; justify-content: center;
+}
+.user-chip .user-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.user-chip.compact { font-size: 13px; height: 36px; }
+
+.app-header {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px 16px; flex-wrap: wrap;
+  padding: 18px 32px; border-bottom: 1px solid var(--hairline); background: var(--paper);
+}
+.app-header-start { display: flex; align-items: center; gap: 12px 36px; flex-wrap: wrap; min-width: 0; }
+.app-header-end { display: flex; align-items: center; gap: 8px; }
+
+@media (max-width: 640px) {
+  .app-header { padding: 12px 16px; }
+  .app-header-start { display: contents; }
+  .app-header .brand { order: 1; }
+  .app-header-end { order: 2; }
+  .app-header .view-nav { order: 3; flex-basis: 100%; }
+  .app-header .view-nav .view-link { flex: 1; height: 44px; }
+  .user-chip { height: 44px; border-radius: 22px; }
+  .view-nav.segmented .view-link { min-height: 44px; }
+}
+
+.views-page { min-height: 100dvh; }
+.views-empty {
+  margin: 64px auto; max-width: 460px; padding: 0 8px; display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center;
+}

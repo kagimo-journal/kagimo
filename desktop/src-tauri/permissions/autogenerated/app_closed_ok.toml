@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-app-closed-ok"
+description = "Enables the app_closed_ok command without any pre-configured scope."
+commands.allow = ["app_closed_ok"]
+
+[[permission]]
+identifier = "deny-app-closed-ok"
+description = "Denies the app_closed_ok command without any pre-configured scope."
+commands.deny = ["app_closed_ok"]

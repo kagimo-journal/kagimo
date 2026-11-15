@@ -1,0 +1,32 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "main",
+  "description": "The journal window: the app's own commands (src/lib.rs) and nothing else.",
+  "windows": [
+    "main"
+  ],
+  "permissions": [
+    "allow-folder-current",
+    "allow-folder-pick",
+    "allow-folder-open",
+    "allow-folder-reveal",
+    "allow-files-read-doc",
+    "allow-files-write-doc",
+    "allow-files-list",
+    "allow-files-read",
+    "allow-files-write",
+    "allow-files-read-bytes",
+    "allow-files-write-bytes",
+    "allow-files-wipe",
+    "allow-keys-save",
+    "allow-keys-load",
+    "allow-keys-delete",
+    "allow-server-get",
+    "allow-server-set",
+    "allow-api-fetch",
+    "allow-open-external",
+    "allow-app-listening",
+    "allow-app-closed-ok",
+    "allow-e2e-report"
+  ]
+}

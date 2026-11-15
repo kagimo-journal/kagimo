@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Settings — appearance</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0;background:#F7F4EF}
+a{color:#2F4F6B}a:hover{color:#1E3A52}
+</style>
+</helmet>
+<div style="min-height: 1040px; box-sizing: border-box; background: #F7F4EF; color: #1E1C19; font-family: Inter, system-ui, sans-serif; display: flex; flex-wrap: wrap; align-items: stretch;">
+  <nav aria-label="Settings" style="flex: 1 1 220px; max-width: 260px; box-sizing: border-box; padding: 32px 20px; border-right: 1px solid #E4DED4; display: flex; flex-direction: column; gap: 4px;">
+    <a href="Editor.dc.html" style="font-size: 14px; font-weight: 500; padding: 0 12px 20px; text-decoration: none;">← Back to journal</a>
+    <a href="#" style="padding: 10px 12px; border-radius: 8px; font-size: 14px; color: #1E1C19; text-decoration: none;">Account</a>
+    <a href="#" style="padding: 10px 12px; border-radius: 8px; font-size: 14px; color: #1E1C19; text-decoration: none;">Passkeys &amp; 2FA</a>
+    <a href="#" aria-current="page" style="padding: 10px 12px; border-radius: 8px; font-size: 14px; font-weight: 500; color: #1E1C19; background: #EFEAE2; text-decoration: none;">Appearance</a>
+    <a href="#entry-details" style="padding: 10px 12px; border-radius: 8px; font-size: 14px; color: #1E1C19; text-decoration: none;">Entry details</a>
+    <a href="#" style="padding: 10px 12px; border-radius: 8px; font-size: 14px; color: #1E1C19; text-decoration: none;">Export</a>
+  </nav>
+
+  <main style="flex: 999 1 560px; min-width: 0; padding: 40px 24px 80px; display: flex; justify-content: center;">
+    <div style="width: 100%; max-width: 820px; display: flex; flex-direction: column; gap: 40px;">
+      <h1 style="margin: 0; font-family: Newsreader, Georgia, serif; font-weight: 400; font-size: 36px; letter-spacing: -0.01em;">Appearance</h1>
+
+      <section style="display: flex; flex-direction: column; gap: 14px;">
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <h2 style="margin: 0; font-size: 15px; font-weight: 600;">Mode</h2>
+          <p style="margin: 0; font-size: 14px; color: #615B52;">System follows your device's light and dark setting.</p>
+        </div>
+        <div role="radiogroup" aria-label="Mode" style="display: inline-flex; align-self: flex-start; padding: 4px; border-radius: 10px; background: #EFEAE2; gap: 2px;">
+          <sc-for list="{{modes}}" as="m" hint-placeholder-count="3">
+            <button type="button" role="radio" aria-checked="{{m.on}}" onClick="{{m.pick}}" style="height: 36px; padding: 0 18px; border: 0; border-radius: 7px; background: {{m.bg}}; box-shadow: {{m.shadow}}; color: #1E1C19; font: 500 14px Inter, sans-serif; cursor: pointer;">{{m.label}}</button>
+          </sc-for>
+        </div>
+      </section>
+
+      <section style="display: flex; flex-direction: column; gap: 16px;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap;">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <h2 style="margin: 0; font-size: 15px; font-weight: 600;">Themes</h2>
+            <p style="margin: 0; font-size: 14px; color: #615B52;">Pick one theme for light and one for dark. Now showing: <strong style="color: #1E1C19; font-weight: 600;">{{activeName}}</strong></p>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #615B52;">Light</span>
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px;">
+            <sc-for list="{{lightThemes}}" as="th" hint-placeholder-count="4">
+              <button type="button" onClick="{{th.pick}}" aria-pressed="{{th.on}}" style="padding: 0; border: 2px solid {{th.ring}}; border-radius: 12px; background: #FFFDF9; overflow: hidden; text-align: left; cursor: pointer; font: inherit; color: #1E1C19;">
+                <div style="height: 84px; background: {{th.bg}}; padding: 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 7px;">
+                  <div style="width: 70%; height: 8px; border-radius: 4px; background: {{th.ink}};"></div>
+                  <div style="width: 90%; height: 5px; border-radius: 3px; background: {{th.muted}};"></div>
+                  <div style="width: 60%; height: 5px; border-radius: 3px; background: {{th.muted}};"></div>
+                  <div style="width: 28px; height: 10px; border-radius: 5px; background: {{th.accent}}; margin-top: auto;"></div>
+                </div>
+                <div style="padding: 10px 12px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; font-weight: 500;"><span>{{th.name}}</span><span style="font-size: 11px; color: #615B52; font-weight: 500;">{{th.tag}}</span></div>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #615B52;">Dark</span>
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px;">
+            <sc-for list="{{darkThemes}}" as="th" hint-placeholder-count="4">
+              <button type="button" onClick="{{th.pick}}" aria-pressed="{{th.on}}" style="padding: 0; border: 2px solid {{th.ring}}; border-radius: 12px; background: #FFFDF9; overflow: hidden; text-align: left; cursor: pointer; font: inherit; color: #1E1C19;">
+                <div style="height: 84px; background: {{th.bg}}; padding: 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 7px;">
+                  <div style="width: 70%; height: 8px; border-radius: 4px; background: {{th.ink}};"></div>
+                  <div style="width: 90%; height: 5px; border-radius: 3px; background: {{th.muted}};"></div>
+                  <div style="width: 60%; height: 5px; border-radius: 3px; background: {{th.muted}};"></div>
+                  <div style="width: 28px; height: 10px; border-radius: 5px; background: {{th.accent}}; margin-top: auto;"></div>
+                </div>
+                <div style="padding: 10px 12px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; font-weight: 500;"><span>{{th.name}}</span><span style="font-size: 11px; color: #615B52; font-weight: 500;">{{th.tag}}</span></div>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <section style="display: flex; flex-wrap: wrap; gap: 24px;">
+        <div style="flex: 1 1 300px; box-sizing: border-box; border: 1.5px dashed #D6CFC3; border-radius: 12px; padding: 28px; display: flex; flex-direction: column; align-items: flex-start; gap: 12px;">
+          <h2 style="margin: 0; font-size: 15px; font-weight: 600;">Import a theme</h2>
+          <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #615B52;">Drop a VS Code colour theme (<span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px;">.json</span>) or a base16 scheme (<span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px;">.yaml</span>). We read its colours and fit them to the journal. Text that's too faint is darkened until it's easy to read.</p>
+          <button type="button" style="height: 40px; padding: 0 16px; border: 1px solid #D6CFC3; border-radius: 8px; background: #FFFDF9; color: #1E1C19; font: 500 14px Inter, sans-serif; cursor: pointer;">Choose file…</button>
+        </div>
+        <div style="flex: 1 1 340px; background: #FFFDF9; border: 1px solid #E4DED4; border-radius: 12px; padding: 20px 24px; display: flex; flex-direction: column; gap: 10px;">
+          <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #615B52;">How colours map</span>
+          <div style="display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.8fr) minmax(0, 0.8fr); gap: 7px 12px; font-size: 13px;">
+            <span style="color: #615B52;">VS Code key</span><span style="color: #615B52;">base16</span><span style="color: #615B52;">Journal</span>
+            <sc-for list="{{mapping}}" as="r" hint-placeholder-count="7">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{r.vs}}</span>
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px;">{{r.b16}}</span>
+              <span style="font-weight: 500;">{{r.token}}</span>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <section id="entry-details" style="display: flex; flex-direction: column; gap: 14px; border-top: 1px solid #E4DED4; padding-top: 36px;">
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <h2 style="margin: 0; font-family: Newsreader, Georgia, serif; font-weight: 400; font-size: 28px;">Entry details</h2>
+          <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #615B52; max-width: 600px;">Added to each new entry automatically, and encrypted with it. You can remove any detail from a single entry.</p>
+        </div>
+        <div style="background: #FFFDF9; border: 1px solid #E4DED4; border-radius: 12px;">
+          <label style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 20px; border-bottom: 1px solid #E4DED4; cursor: pointer;">
+            <span style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 14px; font-weight: 500;">Date and time</span><span style="font-size: 13px; color: #615B52;">From your device's clock and time zone.</span></span>
+            <input type="checkbox" checked style="width: 18px; height: 18px; accent-color: #2F4F6B;">
+          </label>
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 20px; flex-wrap: wrap;">
+            <span style="display: flex; flex-direction: column; gap: 2px; max-width: 380px;"><span style="font-size: 14px; font-weight: 500;">Location</span><span style="font-size: 13px; color: #615B52;">Your browser will ask for permission once. Places are looked up on this device; coordinates aren't kept.</span></span>
+            <div role="radiogroup" aria-label="Location detail" style="display: inline-flex; padding: 4px; border-radius: 10px; background: #EFEAE2; gap: 2px;">
+              <sc-for list="{{locs}}" as="l" hint-placeholder-count="3">
+                <button type="button" role="radio" aria-checked="{{l.on}}" onClick="{{l.pick}}" style="height: 34px; padding: 0 14px; border: 0; border-radius: 7px; background: {{l.bg}}; box-shadow: {{l.shadow}}; color: #1E1C19; font: 500 13px Inter, sans-serif; cursor: pointer;">{{l.label}}</button>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1040}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { mode: 'System', light: 'Paper', dark: 'Paper Dark', loc: 'Neighbourhood' };
+  }
+  renderVals() {
+    const s = this.state;
+    const seg = (on) => ({ bg: on ? '#FFFDF9' : 'transparent', shadow: on ? '0 1px 2px rgba(30,28,25,0.12)' : 'none' });
+    const modes = ['System', 'Light', 'Dark'].map((label) => ({ label, on: s.mode === label, ...seg(s.mode === label), pick: () => this.setState({ mode: label }) }));
+    const locs = ['Off', 'City', 'Neighbourhood'].map((label) => ({ label, on: s.loc === label, ...seg(s.loc === label), pick: () => this.setState({ loc: label }) }));
+    const L = [
+      { name: 'Paper', tag: 'Default', bg: '#F7F4EF', ink: '#1E1C19', muted: '#B5ADA1', accent: '#2F4F6B' },
+      { name: 'Solarized Light', tag: '', bg: '#FDF6E3', ink: '#073642', muted: '#93A1A1', accent: '#268BD2' },
+      { name: 'Quiet Light', tag: '', bg: '#F5F5F5', ink: '#333333', muted: '#AAAAAA', accent: '#4B69C6' },
+      { name: 'Catppuccin Latte', tag: 'Imported', bg: '#EFF1F5', ink: '#4C4F69', muted: '#9CA0B0', accent: '#1E66F5' }
+    ];
+    const D = [
+      { name: 'Paper Dark', tag: 'Default', bg: '#171614', ink: '#ECE7DF', muted: '#5E584F', accent: '#9DB7CF' },
+      { name: 'Nord', tag: '', bg: '#2E3440', ink: '#ECEFF4', muted: '#616E88', accent: '#88C0D0' },
+      { name: 'Gruvbox Dark', tag: '', bg: '#282828', ink: '#EBDBB2', muted: '#665C54', accent: '#FE8019' },
+      { name: 'Tokyo Night', tag: 'Imported', bg: '#1A1B26', ink: '#C0CAF5', muted: '#565F89', accent: '#7AA2F7' }
+    ];
+    const card = (list, key) => list.map((t) => ({ ...t, on: s[key] === t.name, ring: s[key] === t.name ? '#2F4F6B' : '#E4DED4', pick: () => this.setState({ [key]: t.name }) }));
+    const activeName = s.mode === 'Dark' ? s.dark : s.mode === 'Light' ? s.light : s.light + ' (system is light)';
+    return {
+      modes, locs, activeName,
+      lightThemes: card(L, 'light'),
+      darkThemes: card(D, 'dark'),
+      mapping: [
+        { vs: 'editor.background', b16: 'base00', token: 'Paper' },
+        { vs: 'sideBar.background', b16: 'base01', token: 'Surface' },
+        { vs: 'editor.foreground', b16: 'base05', token: 'Ink' },
+        { vs: 'descriptionForeground', b16: 'base04', token: 'Muted' },
+        { vs: 'panel.border', b16: 'base02', token: 'Hairline' },
+        { vs: 'button.background', b16: 'base0D', token: 'Accent' },
+        { vs: 'errorForeground', b16: 'base08', token: 'Danger' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

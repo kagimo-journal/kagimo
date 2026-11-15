@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-files-read-doc"
+description = "Enables the files_read_doc command without any pre-configured scope."
+commands.allow = ["files_read_doc"]
+
+[[permission]]
+identifier = "deny-files-read-doc"
+description = "Denies the files_read_doc command without any pre-configured scope."
+commands.deny = ["files_read_doc"]

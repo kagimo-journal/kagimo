@@ -1,0 +1,5 @@
+node_modules/
+# The frontend built for the desktop app (frontend: npm run build:desktop)
+/renderer/
+# Signed release builds (scripts/dist-mac.sh)
+/release/

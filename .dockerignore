@@ -1,0 +1,13 @@
+.env*
+.git
+**/node_modules
+/data
+/.local
+/bin
+/e2e
+/design
+/docs
+/frontend/.cache
+/backend/web/dist/*
+!/backend/web/dist/.gitkeep
+/desktop

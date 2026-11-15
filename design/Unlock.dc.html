@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Unlock journal</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&amp;display=swap">
+<style>
+body{margin:0;background:#F7F4EF}
+a{color:#2F4F6B}a:hover{color:#1E3A52}
+</style>
+</helmet>
+<div style="min-height: 860px; box-sizing: border-box; background: #F7F4EF; color: #1E1C19; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column;">
+  <header style="padding: 28px 40px; display: flex; justify-content: space-between; align-items: center;">
+    <div style="font-family: Newsreader, Georgia, serif; font-size: 24px;">journal<span style="color: #2F4F6B;">.</span></div>
+    <button type="button" style="height: 36px; padding: 0 12px; border: 0; border-radius: 6px; background: transparent; color: #615B52; font: 500 14px Inter, sans-serif; cursor: pointer;">Not nash? Sign out</button>
+  </header>
+  <main style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 24px 16px 96px;">
+    <div style="width: 100%; max-width: 380px; display: flex; flex-direction: column; align-items: center; gap: 28px;">
+      <div style="width: 56px; height: 56px; border-radius: 28px; border: 1px solid #E4DED4; background: #FFFDF9; color: #2F4F6B; display: flex; align-items: center; justify-content: center;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px; text-align: center;">
+        <h1 style="margin: 0; font-family: Newsreader, Georgia, serif; font-weight: 400; font-size: 36px; letter-spacing: -0.01em;">Good evening, nash</h1>
+        <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #615B52;">Your journal is locked. Unlock it to decrypt your entries on this device.</p>
+      </div>
+      <div style="width: 100%; display: flex; flex-direction: column; gap: 14px;">
+        <button type="button" style="height: 48px; border: 0; border-radius: 8px; background: #2F4F6B; color: #FFFFFF; font: 500 15px Inter, sans-serif; display: flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"></circle><path d="M10.8 12.2 20 3"></path><path d="M16 7l3 3"></path><path d="M18 5l2 2"></path></svg>
+          Unlock with passkey
+        </button>
+        <div style="display: flex; align-items: center; gap: 12px; font-size: 13px; color: #615B52;">
+          <div style="flex: 1; height: 1px; background: #E4DED4;"></div>or<div style="flex: 1; height: 1px; background: #E4DED4;"></div>
+        </div>
+        <label for="ul-pass" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);">Passphrase</label>
+        <div style="display: flex; gap: 8px;">
+          <input id="ul-pass" type="password" autocomplete="current-password" placeholder="Passphrase" style="flex: 1; min-width: 0; height: 44px; box-sizing: border-box; border: 1px solid #D6CFC3; border-radius: 8px; padding: 0 14px; font: 15px Inter, sans-serif; background: #FFFFFF; color: #1E1C19;">
+          <button type="button" style="height: 44px; padding: 0 16px; border: 1px solid #D6CFC3; border-radius: 8px; background: #FFFDF9; color: #1E1C19; font: 500 15px Inter, sans-serif; cursor: pointer;">Unlock</button>
+        </div>
+        <a href="#" style="align-self: center; font-size: 13px;">Use recovery key</a>
+      </div>
+      <p style="margin: 0; font-size: 13px; color: #615B52; text-align: center; line-height: 1.5;">Locks again after 15 minutes idle, or when you close the tab.</p>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":860}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

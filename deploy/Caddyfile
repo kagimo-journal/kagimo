@@ -1,0 +1,24 @@
+# Kagimo on journal.local: HTTPS from Caddy's internal CA, proxied to the Go server.
+#
+# Install: sudo install -m 0644 deploy/Caddyfile /etc/caddy/conf.d/journal.caddy
+#          sudo systemctl reload caddy
+#
+# `tls internal` is required: journal.local is not a public name, so ACME cannot issue a
+# certificate for it. Every device that opens the journal must trust Caddy's local root CA
+# (/var/lib/caddy/pki/authorities/local/root.crt); WebAuthn and WebCrypto only work in a
+# secure context, so a certificate warning is not something to click through.
+journal.local {
+	tls internal
+
+	encode zstd gzip
+
+	# Image uploads are at most 15 MiB of ciphertext (server limit); allow a little headroom.
+	request_body {
+		max_size 16MiB
+	}
+
+	# Caddy replaces any client-supplied X-Forwarded-For with the real peer address; the
+	# server trusts the right-most entry only because this proxy connects from loopback.
+	# Security headers (CSP, HSTS, ...) are set by the Go server itself.
+	reverse_proxy 127.0.0.1:8080
+}

@@ -1,0 +1,13 @@
+/* ===== Terms of Service: reuses the About page layout (about.css) ===== */
+.terms-main { gap: 40px; }
+.terms-updated { margin: 0; font-size: 14px; color: var(--muted); }
+.terms-section { gap: 12px; scroll-margin-top: 24px; }
+.terms-main h2 { font-size: 24px; }
+.terms-section > p, .terms-list { font-size: 15px; line-height: 1.7; }
+.terms-list { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 8px; }
+.terms-toc { border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); padding: 16px 0; }
+.terms-toc ol { margin: 0; padding-left: 22px; columns: 2; column-gap: 32px; font-size: 14px; line-height: 1.9; }
+.terms-toc a { color: var(--muted); }
+@media (max-width: 640px) {
+  .terms-toc ol { columns: 1; }
+}

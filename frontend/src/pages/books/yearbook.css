@@ -1,0 +1,126 @@
+/* ===== Year book (design/YearBook.dc.html) ===== */
+.yearbook { background: var(--sel); min-height: 100dvh; }
+.yb-header { display: flex; align-items: center; justify-content: space-between; gap: 12px 16px; flex-wrap: wrap; padding: 16px 32px; }
+.yb-back { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-size: 14px; font-weight: 500; text-decoration: none; }
+.yb-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+.yb-main { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 8px 16px 48px; }
+
+.yb-frame {
+  position: relative; width: 100%; max-width: 1180px; height: var(--page-h, 640px); background: var(--surface); border-radius: 4px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04), 0 20px 40px rgba(30, 28, 25, 0.12); touch-action: pan-y; overflow: hidden;
+}
+.yb-frame.spread .yb-sheet::after { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: var(--hairline); }
+.yb-clip {
+  position: absolute; left: var(--pad-x); top: var(--pad-top); width: var(--cw); height: var(--ch); overflow: hidden;
+}
+.yb-frame.spread .yb-clip { width: calc(2 * var(--cw) + var(--gap)); }
+.yb-flow {
+  width: var(--cw); height: var(--ch); column-width: var(--cw); column-gap: var(--gap); column-fill: auto; column-count: auto;
+  color: var(--ink); font-family: var(--writing-font);
+}
+.yb-folios { position: absolute; left: 0; right: 0; bottom: 26px; display: flex; pointer-events: none; }
+.yb-folios span { width: var(--page-w); text-align: center; font: 14px var(--writing-font); color: var(--muted); }
+
+.yb-eyebrow { display: block; font: 600 11px var(--sans); letter-spacing: 0.24em; text-transform: uppercase; color: var(--muted); text-align: center; }
+
+/* front page: title and contents */
+.yb-front { break-after: column; display: flex; flex-direction: column; gap: 32px; }
+.yb-front-head { display: flex; flex-direction: column; gap: 8px; text-align: center; }
+.yb-book-title { font-family: var(--writing-font); font-style: italic; font-weight: 400; font-size: 40px; line-height: 1.15; overflow-wrap: anywhere; }
+.yb-book-title.plain { font-style: normal; font-size: 52px; }
+.yb-book-stats { font-size: 16px; color: var(--muted); }
+.yb-contents { display: flex; flex-direction: column; gap: 4px; }
+.yb-contents .yb-eyebrow { letter-spacing: 0.2em; padding-bottom: 8px; }
+.yb-toc-row { display: flex; align-items: baseline; gap: 8px; padding: 5px 0; font-size: 18px; color: var(--ink); text-decoration: none; }
+.yb-toc-row:hover { color: var(--accent-text); }
+.yb-leader { flex: 1; border-bottom: 1px dotted var(--line); transform: translateY(-4px); min-width: 12px; }
+.yb-toc-count { font-size: 15px; color: var(--muted); }
+.yb-toc-page { width: 36px; text-align: right; font-size: 15px; }
+
+/* months and entries */
+.yb-month { break-before: column; }
+.yb-month-mark { display: block; height: 0; }
+.yb-month-name { margin-bottom: 18px; }
+.yb-entry + .yb-entry { margin-top: 2.4em; }
+.yb-entry-head { display: flex; flex-direction: column; gap: 6px; text-align: center; padding: 8px 0 18px; break-inside: avoid; break-after: avoid; }
+.yb-entry-head h2 { font-family: var(--writing-font); font-weight: 400; font-size: 30px; line-height: 1.2; overflow-wrap: anywhere; }
+.yb-entry-date { font-style: italic; font-size: 15px; color: var(--muted); }
+.yb-body {
+  font-size: calc(var(--writing-size) * 0.86); line-height: var(--writing-leading); text-align: justify; hyphens: auto;
+  overflow-wrap: break-word;
+}
+.yb-body p { margin: 0; orphans: 2; widows: 2; }
+.yb-body p + p:not(.yb-divider):not(.centred) { text-indent: 1.5em; }
+.yb-body p.centred { text-align: center; }
+.yb-body > :is(h3, h4, h5, blockquote, ul, ol, pre, figure) { margin: 0.9em 0 0.5em; }
+.yb-body h3 { font-weight: 400; font-size: 1.4em; line-height: 1.25; text-align: left; break-after: avoid; }
+.yb-body h4 { font-weight: 500; font-size: 1.18em; line-height: 1.3; text-align: left; break-after: avoid; }
+.yb-body h5 { font-weight: 500; font-size: 1.04em; line-height: 1.35; text-align: left; break-after: avoid; }
+.yb-body blockquote { border-left: 2px solid var(--accent); padding-left: 16px; color: var(--muted); font-style: italic; }
+.yb-body ul, .yb-body ol { padding-left: 1.3em; text-align: left; }
+.yb-body li p { text-indent: 0 !important; }
+.yb-body mark { background: var(--highlight); color: var(--highlight-ink); }
+.yb-body a { color: var(--accent-text); }
+.yb-body code { font-family: var(--mono); font-size: 0.82em; }
+.yb-divider { text-align: center !important; color: var(--muted); letter-spacing: 0.4em; margin: 0.8em 0 !important; text-indent: 0 !important; }
+.yb-divider-time { display: block; margin-top: 0.35em; font-size: 0.7em; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; }
+.yb-missing { font-style: italic; color: var(--muted); text-align: center; }
+.yb-figure {
+  width: min(100%, calc(var(--ch) * 0.72 * var(--ratio))); margin: 1em auto !important; break-inside: avoid;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.yb-figure-frame { display: block; width: 100%; aspect-ratio: var(--ar); background: var(--sel); border-radius: 2px; overflow: hidden; }
+.yb-figure-frame img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.yb-figure-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--muted); }
+.yb-figure figcaption { font-style: italic; font-size: 0.85em; color: var(--muted); text-align: center; text-indent: 0; }
+.yb-end { display: block; height: 1px; }
+
+.yb-pager { display: flex; align-items: center; gap: 16px; }
+.yb-turn {
+  width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 22px; background: var(--surface); color: var(--ink);
+  display: inline-flex; align-items: center; justify-content: center; padding: 0;
+}
+.yb-turn:hover:not(:disabled) { background: var(--paper); }
+.yb-page-status { font-size: 14px; color: var(--muted); min-width: 140px; text-align: center; }
+.yb-hint { font-size: 13px; color: var(--muted); text-align: center; }
+
+@media (max-width: 640px) {
+  .yb-header { padding: 8px 16px; }
+  .yb-main { padding: 4px 12px 32px; gap: 14px; }
+  .yb-folios { bottom: 16px; }
+  .yb-book-title { font-size: 32px; }
+  .yb-book-title.plain { font-size: 42px; }
+  .yb-toc-row { min-height: 40px; align-items: center; font-size: 17px; }
+  .yb-entry-head h2 { font-size: 25px; }
+  .yb-body { font-size: calc(var(--writing-size) * 0.82); text-align: left; }
+}
+
+/* ===== Print: the whole year as a book, no app chrome ===== */
+@media print {
+  @page {
+    margin: 22mm 20mm 24mm;
+    @bottom-center { content: counter(page); font: 10pt Georgia, serif; color: #555; }
+  }
+  body.print-book .toast-region, body.print-book .skip-link { display: none !important; }
+  .yearbook { background: #fff !important; }
+  .yb-header, .yb-pager, .yb-hint, .yb-folios, .yb-sheet { display: none !important; }
+  .yb-main { padding: 0 !important; display: block; }
+  .yb-frame { all: unset; display: block; }
+  .yb-clip { position: static !important; width: auto !important; height: auto !important; overflow: visible !important; }
+  .yb-flow {
+    columns: auto !important; column-width: auto !important; width: auto !important; height: auto !important; transform: none !important;
+    color: #111 !important; font-size: 11.5pt;
+  }
+  .yb-flow * { color: inherit; }
+  .yb-body { font-size: 11.5pt; line-height: 1.6; }
+  .yb-eyebrow, .yb-entry-date, .yb-toc-count, .yb-book-stats, .yb-figure figcaption, .yb-divider { color: #555 !important; }
+  .yb-body mark { background: #e8e8e8 !important; color: #111 !important; }
+  .yb-front { break-after: page; padding-top: 30mm; }
+  .yb-month { break-before: page; }
+  .yb-entry { break-before: page; }
+  .yb-month > .yb-entry:first-of-type { break-before: avoid; }
+  .yb-figure { width: min(100%, calc(150mm * var(--ratio))); }
+  .yb-toc-row { min-height: 0; }
+  /* screen page numbers don't match printed pages */
+  .yb-toc-page { display: none; }
+}

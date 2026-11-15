@@ -1,0 +1,22 @@
+.admin-header { padding: 20px 40px; border-bottom: 1px solid var(--hairline); }
+@media (max-width: 640px) { .admin-header { padding: 16px; } }
+.admin-stats { display: flex; gap: 32px; margin: 0; flex-wrap: wrap; }
+.admin-stats div { display: flex; flex-direction: column; gap: 2px; }
+.admin-stats dt { font-size: 13px; color: var(--muted); }
+.admin-stats dd { margin: 0; font-size: 22px; font-weight: 500; }
+.admin-box { background: var(--surface); border: 1px solid var(--hairline); border-radius: 12px; }
+.admin-empty { padding: 18px 20px; font-size: 14px; color: var(--muted); }
+.count-badge {
+  display: inline-flex; align-items: center; justify-content: center; min-width: 22px; height: 22px; padding: 0 6px; margin-left: 6px;
+  border-radius: 11px; background: var(--accent); color: var(--accent-ink); font-size: 12px; vertical-align: 1px;
+}
+table.members { width: 100%; min-width: 720px; border-collapse: collapse; font-size: 14px; }
+table.members th { text-align: left; color: var(--muted); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; padding: 14px 20px; }
+table.members td { padding: 14px 20px; border-top: 1px solid var(--hairline); }
+table.members .role { font-size: 12px; color: var(--accent-text); font-weight: 600; margin-left: 4px; }
+table.members .role.disabled { color: var(--danger); }
+table.members .menu { text-align: left; }
+.invite-form { gap: 12px; align-items: flex-end; flex-wrap: wrap; }
+.invite-form .field { flex: 1 1 260px; margin: 0; }
+.invite-minted { align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.invite-minted code { font-family: var(--mono, ui-monospace, monospace); font-size: 15px; letter-spacing: 0.04em; user-select: all; }

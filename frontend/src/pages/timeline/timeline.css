@@ -1,0 +1,98 @@
+/* ===== Timeline (design/Timeline.dc.html) ===== */
+.timeline { width: 100%; max-width: 920px; margin: 0 auto; padding: 48px 24px 96px; display: flex; flex-direction: column; gap: 40px; box-sizing: border-box; }
+.tl-year { display: flex; flex-direction: column; gap: 24px; }
+.tl-year-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.tl-year-title { font-family: var(--serif); font-weight: 400; font-size: 64px; line-height: 1; letter-spacing: -0.02em; }
+.tl-totals { font-size: 14px; color: var(--muted); }
+.year-steps { display: flex; gap: 4px; }
+.step-btn {
+  width: 40px; height: 40px; border: 1px solid var(--hairline); border-radius: 8px; background: var(--surface); color: var(--ink);
+  display: inline-flex; align-items: center; justify-content: center; padding: 0;
+}
+.step-btn:hover:not(:disabled) { background: var(--sel); }
+.step-btn:disabled { color: var(--line); opacity: 1; }
+
+/* day strip: one dot per day. Visually an image (with a text summary); months to jump to follow it
+   as real buttons, revealed on keyboard focus. */
+.day-strip {
+  margin: 0; padding: 20px; background: var(--surface); border: 1px solid var(--hairline); border-radius: 12px;
+  display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 12px 10px;
+}
+.strip-month { display: flex; flex-direction: column; gap: 8px; align-items: center; }
+.strip-days { display: grid; grid-template-columns: repeat(5, 6px); grid-template-rows: repeat(7, 6px); gap: 3px; align-content: start; }
+.strip-days .dot { width: 6px; height: 6px; border-radius: 3px; background: var(--hairline); }
+.strip-days .dot.written { background: var(--accent); cursor: pointer; }
+.strip-days .dot.future { background: var(--notice); }
+.strip-label { font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.strip-label.future { color: color-mix(in srgb, var(--muted) 55%, transparent); }
+.month-jump { display: flex; flex-wrap: wrap; gap: 4px; margin-top: -16px; }
+.month-jump:not(:focus-within) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.month-jump-btn { min-height: 36px; padding: 0 12px; border: 1px solid var(--hairline); border-radius: 8px; background: var(--surface); color: var(--ink); font: 500 13px var(--sans); }
+
+.tl-search { max-width: 420px; }
+.tl-note { font-size: 14px; color: var(--muted); margin-top: -16px; }
+
+/* month sections on a vertical spine */
+.tl-month { display: flex; flex-direction: column; }
+.tl-month-head {
+  margin: 0 0 8px; padding: 10px 0; position: sticky; top: 0; z-index: 2; background: var(--paper);
+  font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+  display: flex; justify-content: space-between; gap: 12px; border-radius: 0;
+}
+.tl-month-head:focus-visible { outline-offset: -2px; }
+.tl-month-sum { font-weight: 500; letter-spacing: 0; text-transform: none; }
+.tl-spine { position: relative; display: flex; flex-direction: column; }
+.tl-spine-line { position: absolute; left: 87px; top: 8px; bottom: 8px; width: 1px; background: var(--hairline); }
+.tl-row, .tl-gap { display: grid; grid-template-columns: 72px 32px minmax(0, 1fr); }
+.tl-row { align-items: start; padding: 10px 0; scroll-margin: 60px 0; }
+.tl-date { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; padding-top: 14px; }
+.tl-day { font-family: var(--serif); font-size: 30px; line-height: 1; }
+.tl-weekday { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.tl-node {
+  justify-self: center; margin-top: 24px; width: 9px; height: 9px; border-radius: 5px; background: var(--paper);
+  border: 2px solid var(--accent); position: relative; z-index: 1;
+}
+.tl-card {
+  display: flex; gap: 20px; padding: 18px 20px; background: var(--surface); border: 1px solid var(--hairline); border-radius: 12px;
+  color: var(--ink); text-decoration: none; min-width: 0;
+}
+.tl-card:hover { color: var(--ink); border-color: var(--line); }
+.tl-card:focus-visible { outline-offset: 2px; border-radius: 12px; }
+.tl-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+.tl-title { font-family: var(--serif); font-size: 23px; line-height: 1.25; overflow-wrap: anywhere; }
+.tl-snippet {
+  font-family: var(--serif); font-size: 17px; line-height: 1.55; color: var(--muted);
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.tl-meta { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--muted); margin-top: 2px; }
+.tl-place { display: inline-flex; align-items: center; gap: 5px; }
+.tl-thumb {
+  flex: none; width: 132px; height: 100px; border-radius: 8px; background: var(--sel); color: var(--muted); position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.tl-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.tl-thumb-count {
+  position: absolute; right: 6px; bottom: 6px; height: 20px; padding: 0 7px; border-radius: 10px;
+  background: rgba(30, 28, 25, 0.72); color: #F7F4EF; font-size: 11px; font-weight: 500; display: flex; align-items: center;
+}
+.tl-gap { align-items: center; padding: 6px 0; }
+.tl-gap-line { justify-self: center; width: 1px; height: 28px; background: var(--paper); border-left: 1px dashed var(--line); position: relative; z-index: 1; }
+.tl-gap-text { font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--muted); }
+.tl-book-link { align-self: center; }
+
+@media (max-width: 640px) {
+  .timeline { padding: 28px 16px 72px; gap: 32px; }
+  .tl-year-title { font-size: 48px; }
+  .step-btn { width: 44px; height: 44px; }
+  .day-strip { padding: 16px 12px; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 14px 6px; }
+  .month-jump-btn { min-height: 44px; }
+  .tl-row, .tl-gap { grid-template-columns: 40px 20px minmax(0, 1fr); }
+  .tl-spine-line { left: 49px; }
+  .tl-day { font-size: 22px; }
+  .tl-weekday { font-size: 10px; }
+  .tl-node { margin-top: 20px; }
+  .tl-card { flex-direction: column-reverse; gap: 12px; padding: 14px 16px; }
+  .tl-title { font-size: 20px; }
+  .tl-snippet { font-size: 16px; }
+  .tl-thumb { width: 100%; height: 140px; }
+}

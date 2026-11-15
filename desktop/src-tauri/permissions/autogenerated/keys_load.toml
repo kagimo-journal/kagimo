@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-keys-load"
+description = "Enables the keys_load command without any pre-configured scope."
+commands.allow = ["keys_load"]
+
+[[permission]]
+identifier = "deny-keys-load"
+description = "Denies the keys_load command without any pre-configured scope."
+commands.deny = ["keys_load"]

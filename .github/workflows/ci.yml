@@ -1,0 +1,132 @@
+# Tests every push and pull request; pushes to main that pass are published as a container
+# image (ghcr.io/<owner>/<repo>).
+#
+# Every action is pinned to a full commit SHA (a tag can be moved to other code; a commit
+# can't), with the release it corresponds to in the comment. To update one, look the new
+# tag up (`git ls-remote --tags https://github.com/<owner>/<repo> <tag>`) and replace both.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    # For `make test-postgres`: the store and API tests again, on Postgres.
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: journal_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres" --health-interval 5s --health-timeout 5s --health-retries 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
+        with:
+          go-version-file: backend/go.mod
+          cache-dependency-path: backend/go.sum
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            frontend/package-lock.json
+            e2e/package-lock.json
+      - run: make deps
+      # The desktop app has its own job below (it needs Rust and WebKitGTK).
+      - run: make test-go test-frontend test-e2e
+      - run: make test-postgres
+        env:
+          JOURNAL_TEST_DATABASE_URL: postgres://postgres:postgres@localhost:5432/journal_test?sslmode=disable
+
+  desktop:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      # What Tauri needs to build on Linux (WebKitGTK, GTK), and a display for the end-to-end test.
+      - run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libwebkit2gtk-4.1-dev libgtk-3-dev librsvg2-dev libxdo-dev xvfb
+      - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
+        with:
+          go-version-file: backend/go.mod
+          cache-dependency-path: backend/go.sum
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            frontend/package-lock.json
+            e2e/package-lock.json
+      # Rust, at the version in mise.toml.
+      - uses: jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785 # v5.2.8
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2.9.3
+        with:
+          workspaces: desktop/src-tauri
+      - run: make deps
+      - run: make test-desktop
+      - run: xvfb-run --auto-servernum make desktop-smoke
+
+  # The server as a container image, for anyone who would sooner pull it than build it.
+  image:
+    needs: [test, desktop]
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    concurrency:
+      group: image
+      cancel-in-progress: false
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      # The places dataset is gitignored; build it (GeoNames download cached between runs)
+      # so the Docker build copies it into the image.
+      - uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: frontend/.cache
+          key: geonames-${{ hashFiles('frontend/scripts/build-places.mjs') }}
+      - run: cd frontend && npm ci && npm run places
+      - name: Build and push
+        id: push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          image="ghcr.io/${GITHUB_REPOSITORY,,}"
+          echo "$GITHUB_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
+          docker build -t "$image:$GITHUB_SHA" -t "$image:latest" .
+          docker push "$image:$GITHUB_SHA"
+          docker push "$image:latest"
+          echo "ref=$(docker inspect --format '{{index .RepoDigests 0}}' "$image:$GITHUB_SHA")" >> "$GITHUB_OUTPUT"
+      # Optional: tell another repository (one that deploys this image somewhere) that a new
+      # one is ready, as a repository_dispatch event carrying the image's digest reference.
+      # Off unless the variable NOTIFY_REPO (owner/name) and the secret NOTIFY_TOKEN are set.
+      - name: Notify
+        if: vars.NOTIFY_REPO != ''
+        env:
+          NOTIFY_REPO: ${{ vars.NOTIFY_REPO }}
+          NOTIFY_TOKEN: ${{ secrets.NOTIFY_TOKEN }}
+          IMAGE: ${{ steps.push.outputs.ref }}
+        run: |
+          curl -fsS -X POST "https://api.github.com/repos/$NOTIFY_REPO/dispatches" \
+            -H "Authorization: Bearer $NOTIFY_TOKEN" -H "Accept: application/vnd.github+json" \
+            -d "{\"event_type\":\"image-published\",\"client_payload\":{\"image\":\"$IMAGE\",\"sha\":\"$GITHUB_SHA\"}}"

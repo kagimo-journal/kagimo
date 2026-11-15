@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Create account</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0;background:#F7F4EF}
+a{color:#2F4F6B}a:hover{color:#1E3A52}
+</style>
+</helmet>
+<div style="min-height: 900px; box-sizing: border-box; background: #F7F4EF; color: #1E1C19; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column;">
+  <header style="padding: 28px 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+    <div style="font-family: Newsreader, Georgia, serif; font-size: 24px;">journal<span style="color: #2F4F6B;">.</span></div>
+    <ol style="margin: 0; padding: 0; list-style: none; display: flex; gap: 24px; font-size: 13px; color: #615B52;">
+      <li style="display: flex; align-items: center; gap: 8px; color: #1E1C19; font-weight: 500;"><span style="width: 22px; height: 22px; border-radius: 11px; background: #2F4F6B; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 12px;">1</span>Account</li>
+      <li style="display: flex; align-items: center; gap: 8px;"><span style="width: 22px; height: 22px; box-sizing: border-box; border-radius: 11px; border: 1px solid #D6CFC3; display: flex; align-items: center; justify-content: center; font-size: 12px;">2</span>Secure</li>
+      <li style="display: flex; align-items: center; gap: 8px;"><span style="width: 22px; height: 22px; box-sizing: border-box; border-radius: 11px; border: 1px solid #D6CFC3; display: flex; align-items: center; justify-content: center; font-size: 12px;">3</span>Approval</li>
+    </ol>
+  </header>
+  <main style="flex: 1; display: flex; justify-content: center; padding: 32px 16px 80px;">
+    <div style="width: 100%; max-width: 920px; display: flex; flex-wrap: wrap; gap: 48px; align-items: flex-start;">
+      <div style="flex: 1 1 300px; display: flex; flex-direction: column; gap: 20px; padding-top: 8px;">
+        <h1 style="margin: 0; font-family: Newsreader, Georgia, serif; font-weight: 400; font-size: 40px; line-height: 1.15; letter-spacing: -0.01em;">Request an account</h1>
+        <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #615B52;">Accounts on this journal are approved by its administrator. You can set everything up now and start writing as soon as you're approved.</p>
+        <div style="border-top: 1px solid #E4DED4; padding-top: 20px; display: flex; flex-direction: column; gap: 16px;">
+          <div style="display: flex; gap: 12px; font-size: 14px; line-height: 1.55;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2F4F6B" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px;"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+            <span><strong style="font-weight: 600;">Your passphrase is your key.</strong> It encrypts every entry and image in your browser. The server only stores what it can't read.</span>
+          </div>
+          <div style="display: flex; gap: 12px; font-size: 14px; line-height: 1.55;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2F4F6B" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px;"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path></svg>
+            <span><strong style="font-weight: 600;">The administrator can't read it either.</strong> They can approve or remove your account, and see how much space it uses. Nothing more.</span>
+          </div>
+          <div style="display: flex; gap: 12px; font-size: 14px; line-height: 1.55;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2F4F6B" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px;"><circle cx="8" cy="15" r="4"></circle><path d="M10.8 12.2 20 3"></path><path d="M16 7l3 3"></path></svg>
+            <span><strong style="font-weight: 600;">Lose it, lose the journal.</strong> Next you'll get a recovery key. It is the only other way in.</span>
+          </div>
+        </div>
+      </div>
+      <form style="flex: 1 1 360px; background: #FFFDF9; border: 1px solid #E4DED4; border-radius: 12px; padding: 32px; display: flex; flex-direction: column; gap: 20px;">
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <label for="su-user" style="font-size: 14px; font-weight: 500;">Username</label>
+          <input id="su-user" type="text" autocomplete="username" value="maren" style="height: 44px; box-sizing: border-box; border: 1px solid #D6CFC3; border-radius: 8px; padding: 0 14px; font: 15px Inter, sans-serif; background: #FFFFFF; color: #1E1C19;">
+          <span style="font-size: 13px; color: #615B52;">Visible to the administrator. No email needed.</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <label for="su-note" style="font-size: 14px; font-weight: 500;">Note to the administrator <span style="font-weight: 400; color: #615B52;">(optional)</span></label>
+          <input id="su-note" type="text" value="Hi, it's Maren from the book club" style="height: 44px; box-sizing: border-box; border: 1px solid #D6CFC3; border-radius: 8px; padding: 0 14px; font: 15px Inter, sans-serif; background: #FFFFFF; color: #1E1C19;">
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <label for="su-pass" style="font-size: 14px; font-weight: 500;">Passphrase</label>
+          <input id="su-pass" type="password" autocomplete="new-password" value="lantern orchard quietly ninety" style="height: 44px; box-sizing: border-box; border: 1px solid #2F4F6B; box-shadow: 0 0 0 3px rgba(47,79,107,0.15); border-radius: 8px; padding: 0 14px; font: 15px Inter, sans-serif; background: #FFFFFF; color: #1E1C19; outline: none;">
+          <div style="display: flex; gap: 4px; margin-top: 4px;" aria-hidden="true">
+            <div style="flex: 1; height: 3px; border-radius: 2px; background: #2F4F6B;"></div>
+            <div style="flex: 1; height: 3px; border-radius: 2px; background: #2F4F6B;"></div>
+            <div style="flex: 1; height: 3px; border-radius: 2px; background: #2F4F6B;"></div>
+            <div style="flex: 1; height: 3px; border-radius: 2px; background: #2F4F6B;"></div>
+          </div>
+          <span style="font-size: 13px; color: #615B52;">Very strong. A few unrelated words is easier to remember than symbols.</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <label for="su-pass2" style="font-size: 14px; font-weight: 500;">Repeat passphrase</label>
+          <input id="su-pass2" type="password" autocomplete="new-password" value="lantern orchard quietly ninety" style="height: 44px; box-sizing: border-box; border: 1px solid #D6CFC3; border-radius: 8px; padding: 0 14px; font: 15px Inter, sans-serif; background: #FFFFFF; color: #1E1C19;">
+        </div>
+        <label style="display: flex; gap: 12px; align-items: flex-start; font-size: 14px; line-height: 1.5; cursor: pointer;">
+          <input type="checkbox" checked style="width: 18px; height: 18px; margin: 2px 0 0; accent-color: #2F4F6B;">
+          <span>I understand nobody can reset my passphrase for me.</span>
+        </label>
+        <a href="Setup.dc.html" style="height: 48px; border-radius: 8px; background: #2F4F6B; color: #FFFFFF; font: 500 15px Inter, sans-serif; display: flex; align-items: center; justify-content: center; text-decoration: none;">Continue</a>
+        <p style="margin: 0; font-size: 13px; color: #615B52; text-align: center;">Already have an account? <a href="SignIn.dc.html">Sign in</a></p>
+      </form>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

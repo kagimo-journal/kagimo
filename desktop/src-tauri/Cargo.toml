@@ -1,0 +1,41 @@
+[package]
+name = "kagimo"
+version = "0.1.0"
+description = "Kagimo for the desktop: an encrypted journal kept in a folder you choose."
+edition = "2024"
+publish = false
+license = "AGPL-3.0-only"
+
+[lib]
+name = "kagimo_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = "s"
+panic = "abort"
+strip = true
+
+[build-dependencies]
+tauri-build = { version = "2.7.4", features = [] }
+
+[dependencies]
+base64 = "0.23.1"
+cookie_store = "0.22.1"
+keyring = "4.2.0"
+rand = "0.10.3"
+reqwest = { version = "0.13.5", features = ["cookies", "json"] }
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.154"
+tauri = { version = "2.12.5", features = [] }
+tauri-plugin-dialog = "2.8.4"
+tauri-plugin-opener = "2.7.3"
+tokio = { version = "1.54.1", features = ["sync", "fs", "time", "macros"] }
+url = "2.5.8"
+
+[target.'cfg(any(target_os = "macos", windows, target_os = "linux"))'.dependencies]
+tauri-plugin-single-instance = "2.5.5"
+
+[dev-dependencies]
+tempfile = "3.27.0"
