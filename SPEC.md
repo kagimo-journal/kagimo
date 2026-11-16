@@ -46,8 +46,8 @@ Makefile                 make dev / build / test / run
 secrets at rest (AES-GCM), HMAC for fake KDF salts of unknown usernames, HMAC of the recognised-device
 cookie `jdev` (§5.1). Each use has its own HKDF-derived subkey.
 
-Reference self-hosting: journal.local behind Caddy (`tls internal`) → `127.0.0.1:8080`, origin
-`https://journal.local`. The `Dockerfile` builds the same server as a container image that keeps its data in a
+Reference self-hosting: kagimo.local behind Caddy (`tls internal`) → `127.0.0.1:8080`, origin
+`https://kagimo.local`. The `Dockerfile` builds the same server as a container image that keeps its data in a
 volume at `/data`.
 WebAuthn + WebCrypto require a secure context: `http://localhost` for dev, HTTPS otherwise.
 

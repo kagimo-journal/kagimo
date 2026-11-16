@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Builds the journal and prints the root steps that install it on journal.local as a
+# Builds the journal and prints the root steps that install it on kagimo.local as a
 # hardened systemd *system* service: a dedicated `journal` user, the binary in
 # /usr/local/bin, data in /var/lib/journal, Caddy in front. This script never runs sudo
 # and never touches /var/lib/journal, /etc or a running service; copy the printed
@@ -146,7 +146,7 @@ cat <<EOF
       curl -fsS http://127.0.0.1:8080/api/config && echo     # expect {"bootstrap":…}
       journalctl -u journal -e                               # logs
 
- 5. Add the Caddy site for journal.local (proxies to 127.0.0.1:8080) and reload Caddy:
+ 5. Add the Caddy site for kagimo.local (proxies to 127.0.0.1:8080) and reload Caddy:
 
       sudo install -d -m 0755 /etc/caddy/conf.d
       sudo install -o root -g root -m 0644 $(q "$CADDY_SRC") $CADDY_DST
@@ -157,20 +157,20 @@ cat <<EOF
 
  6. Copy Caddy's local root CA somewhere you can hand it to your devices:
 
-      sudo install -m 0644 $CA_ROOT ~/journal-caddy-root.crt
-      sudo chown $USER: ~/journal-caddy-root.crt
+      sudo install -m 0644 $CA_ROOT ~/kagimo-caddy-root.crt
+      sudo chown $USER: ~/kagimo-caddy-root.crt
 
     The CA is created the first time Caddy serves a 'tls internal' site, so do
-    step 5 (and open https://journal.local once) before this.
+    step 5 (and open https://kagimo.local once) before this.
 
  7. Trust that root certificate on every device that will open the journal
     (WebAuthn/passkeys and WebCrypto refuse to work behind a certificate warning):
 
-      this machine:   sudo trust anchor --store ~/journal-caddy-root.crt
+      this machine:   sudo trust anchor --store ~/kagimo-caddy-root.crt
                       (Firefox keeps its own store: Settings → Privacy & Security →
                        Certificates → View Certificates → Authorities → Import)
-      Other Linux:    sudo trust anchor --store journal-caddy-root.crt   (Arch/Fedora)
-                      sudo cp journal-caddy-root.crt /usr/local/share/ca-certificates/ \\
+      Other Linux:    sudo trust anchor --store kagimo-caddy-root.crt   (Arch/Fedora)
+                      sudo cp kagimo-caddy-root.crt /usr/local/share/ca-certificates/ \\
                         && sudo update-ca-certificates                (Debian/Ubuntu)
       macOS:          open it in Keychain Access → System keychain → set to "Always Trust"
       iOS / iPadOS:   AirDrop or mail it, install the profile (Settings → Profile Downloaded),
@@ -179,9 +179,9 @@ cat <<EOF
                       → CA certificate
       Windows:        certmgr.msc → Trusted Root Certification Authorities → Import
 
- 8. journal.local must resolve on your devices. It does via mDNS (avahi on this machine;
+ 8. kagimo.local must resolve on your devices. It does via mDNS (avahi on this machine;
     macOS/iOS built in; Linux clients need nss-mdns; Android/Windows may need a
-    DNS or hosts entry pointing journal.local at this machine's LAN address).
+    DNS or hosts entry pointing kagimo.local at this machine's LAN address).
 
  Admin CLI against the installed instance:
 
@@ -190,7 +190,7 @@ cat <<EOF
  To update later: rerun this script (it rebuilds), then repeat step 2 and
  'sudo systemctl restart journal'.
 
- Then open https://journal.local. On a fresh database the first account becomes the
+ Then open https://kagimo.local. On a fresh database the first account becomes the
  admin; it has to add a passkey or authenticator app before it can use the journal.
  Keep its recovery key somewhere safe.
 ────────────────────────────────────────────────────────────────────────────

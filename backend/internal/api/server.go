@@ -22,7 +22,7 @@ import (
 
 // Config configures the API server.
 type Config struct {
-	Origin string // full origin, e.g. https://journal.local
+	Origin string // full origin, e.g. https://kagimo.local
 	RPID   string // WebAuthn RP id; defaults to the origin's host
 	RPName string // WebAuthn RP name and TOTP issuer
 

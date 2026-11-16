@@ -69,7 +69,7 @@ cannot reset anyone's passphrase.
   time you unlock. Run it on a machine you control.
 - **Your browser must trust the TLS certificate.** Passkeys and WebCrypto only work in a
   secure context. Clicking through a certificate warning is unsafe and doesn't work
-  anyway. On journal.local this means installing Caddy's local root CA on each device
+  anyway. On kagimo.local this means installing Caddy's local root CA on each device
   (see below).
 - **A weak passphrase can be guessed offline** by someone who has a copy of the
   database. The key derivation is deliberately slow (64 MiB Argon2id), but a long
@@ -191,7 +191,7 @@ journal between the two; choose before people start syncing.
 ## Running it on a home network
 
 This is the systemd-and-Caddy setup, for a Linux machine on a home network. The files assume
-it is called `journal.local`; put your own host name in `deploy/Caddyfile` and
+it is called `kagimo.local`; put your own host name in `deploy/Caddyfile` and
 `deploy/journal.service`.
 
 Prerequisites on that machine: Go 1.27, Node 22 + npm, sqlite3, Caddy (running as the system
@@ -217,14 +217,14 @@ embedded). It never runs `sudo`. It prints the root steps for you to run:
 3. with `--from DIR`: stop the old server, then copy `journal.db` (via `sqlite3 .backup`)
    and `secret.key` from `DIR` into `/var/lib/journal`, owned by `journal`, mode 0600;
 4. `systemctl enable --now journal`; it listens on `127.0.0.1:8080` with
-   `-origin https://journal.local -rp-id journal.local`;
+   `-origin https://kagimo.local -rp-id kagimo.local`;
 5. install `deploy/Caddyfile` as `/etc/caddy/conf.d/journal.caddy` and reload Caddy
    (`tls internal`, gzip/zstd, 16 MiB request bodies, proxy to `127.0.0.1:8080`);
 6. copy Caddy's root CA (`/var/lib/caddy/pki/authorities/local/root.crt`) and trust it
    on every device that will use the journal (Linux, macOS, iOS, Android and Windows
    instructions are printed).
 
-Then open <https://journal.local>, start a journal and turn on sync in Settings → Sync &
+Then open <https://kagimo.local>, start a journal and turn on sync in Settings → Sync &
 backup. **The first sync account on an empty database becomes the admin.** It has to add a
 passkey or an authenticator app before it syncs or can open the admin page. Anyone can
 create a sync account after that; it syncs straight away, and a second factor is optional.

@@ -1,4 +1,4 @@
-# systemd *system* unit for the journal server on journal.local.
+# systemd *system* unit for the journal server on kagimo.local.
 #
 # Install (deploy/install-selfhost.sh prints these steps; it never runs sudo itself):
 #   sudo useradd --system --user-group --home-dir /var/lib/journal --no-create-home \
@@ -23,8 +23,8 @@ Group=journal
 ExecStart=/usr/local/bin/journal \
     -addr 127.0.0.1:8080 \
     -data /var/lib/journal \
-    -origin https://journal.local \
-    -rp-id journal.local
+    -origin https://kagimo.local \
+    -rp-id kagimo.local
 # /var/lib/journal, created and chowned to journal:journal by systemd, mode 0700.
 StateDirectory=journal
 StateDirectoryMode=0700

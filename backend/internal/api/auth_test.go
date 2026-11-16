@@ -365,7 +365,7 @@ func TestCSRF(t *testing.T) {
 }
 
 func TestSecurityHeaders(t *testing.T) {
-	env := newEnv(t, func(c *Config) { c.Origin = "https://journal.local" })
+	env := newEnv(t, func(c *Config) { c.Origin = "https://kagimo.local" })
 	r := env.client().do("GET", "/api/config", nil)
 	want := map[string]string{
 		"X-Content-Type-Options":    "nosniff",
