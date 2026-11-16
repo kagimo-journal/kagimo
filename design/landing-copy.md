@@ -4,7 +4,7 @@ A single promotional page. Same visual language as the boards. Illustrations are
 Books and Mobile .dc.html (see frontend/src/pages/landing/Mockups.tsx); the burn demo uses the app's real burn
 animation (frontend/src/editor/burn.ts). Every claim must stay true of the code; the full detail of privacy lives
 on /about (about-copy.md). The core message: Kagimo runs completely on your device, nothing reaches the server
-unless you opt into sync, and nothing on the site tracks you.
+unless you opt into sync, nothing on the site tracks you, and the code is open source so each of those can be checked.
 
 Header (sticky): brand (back to top) · section menu [Privacy] [No tracking] [Burn it] [Features] [Sync] ·
 [Sign in] on the right. With a journal on this device, [Open your journal] replaces [Sign in]. On phones the
@@ -16,13 +16,13 @@ menu is a scrolling row under the brand.
 
 ## Hero (beside the editor illustration)
 
-Pill: Private by default · no tracking · works offline
+Pill: Private by default · open source · no tracking · works offline
 
 **A journal only you can read.**
 
 A quiet place to write, with places and a book for every year. Your journal is stored on your device,
 and nothing is sent anywhere unless you turn on sync. Sync is end-to-end encrypted, so the copy on our server is
-unreadable to us and to anyone else.
+unreadable to us and to anyone else. And it is open source, so none of this rests on our word.
 
 [Start writing → #start] [How privacy works → #privacy]   (with a journal: [Open your journal])
 
@@ -36,15 +36,17 @@ unreadable to us and to anyone else.
   decrypted by anyone.
 - **Sync, if you want it.** Turn it on to write on all your devices and keep a backup. Everything is encrypted
   before upload, and you can add a passkey or authenticator app to sign-in.
+- **Open source, so you can check.** All of the code is public: the app, the encryption and the server it syncs
+  with. Anyone can read it, test what we say here against it, or run a copy of their own.
 
-The full details → (/about)
+Four points, two by two. The full details → (/about) · Read the source code → (github.com/kagimo-journal/kagimo)
 
 ## No tracking (#no-tracking)
 
 **No tracking of any kind. Not a single tag.**
 
 Nothing on this page watches what you do: not what you read, where you click or how long you stay. There is no
-code here that reports on you, to us or to anyone else.
+code here that reports on you, to us or to anyone else, and because the code is public you can see that for yourself.
 
 - ~~No analytics~~ No analytics scripts, heatmaps, session recordings or "product insights".
 - ~~No ad or social tags~~ No pixels, no like or share buttons, no embedded widgets that report back to anyone.
@@ -135,4 +137,4 @@ account free, so that last step is skipped.
 
 With a journal on this device: **Your journal is on this device.** [Open your journal]
 
-Footer: brand · How it works · Terms · support email
+Footer: brand · How it works · Terms · Source code · support email

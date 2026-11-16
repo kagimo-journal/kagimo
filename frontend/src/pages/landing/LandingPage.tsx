@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import { Brand } from '../../components/Brand';
-import { CloudIcon, KeyIcon, LockIcon, ShieldIcon } from '../../components/Icons';
+import { CloudIcon, CodeIcon, KeyIcon, LockIcon, ShieldIcon } from '../../components/Icons';
 import { signUpDialog } from '../../components/SignUpDialog';
 import { priceLabel } from '../../billing/paywallState';
-import { CRYPTO_SOURCE_URL, SUPPORT_EMAIL } from '../../lib/support';
+import { SOURCE_URL, SUPPORT_EMAIL } from '../../lib/support';
 import { useVault } from '../../local/vault';
 import { useAuth, useReturningVisitor } from '../../state/auth';
 import { useUnlocked } from '../../state/lock';
@@ -89,12 +89,13 @@ export default function LandingPage() {
         <section id="top" className="landing-hero" aria-labelledby="landing-title">
           <div className="landing-hero-copy">
             <span className="landing-eyebrow">
-              <LockIcon size={13} /> Private by default · no tracking · works offline
+              <LockIcon size={13} /> Private by default · open source · no tracking · works offline
             </span>
             <h1 id="landing-title">A journal only you can read.</h1>
             <p className="landing-lede">
               A quiet place to write, with places and a book for every year. Your journal is stored on your device, and nothing is sent
               anywhere unless you turn on sync. Sync is end-to-end encrypted, so the copy on our server is unreadable to us and to anyone else.
+              And it is open source, so none of this rests on our word.
             </p>
             <div className="landing-ctas">
               {home ? (
@@ -139,13 +140,21 @@ export default function LandingPage() {
                   authenticator app to sign-in.
                 </span>
               </li>
+              <li>
+                <CodeIcon size={20} />
+                <strong>Open source, so you can check</strong>
+                <span>
+                  All of the code is public: the app, the encryption and the server it syncs with. Anyone can read it, test what we say here
+                  against it, or run a copy of their own.
+                </span>
+              </li>
             </ul>
             <div className="landing-more-row">
               <Link to="/about" className="landing-more">
                 The full details →
               </Link>
-              <a href={CRYPTO_SOURCE_URL} className="landing-more" target="_blank" rel="noopener noreferrer">
-                Read the encryption code →
+              <a href={SOURCE_URL} className="landing-more" target="_blank" rel="noopener noreferrer">
+                Read the source code →
               </a>
             </div>
           </div>
@@ -159,7 +168,7 @@ export default function LandingPage() {
             <h2 id="landing-tracking-title">No tracking of any kind. Not a single tag.</h2>
             <p>
               Nothing on this page watches what you do: not what you read, where you click or how long you stay. There is no code here that
-              reports on you, to us or to anyone else.
+              reports on you, to us or to anyone else, and because the code is public you can see that for yourself.
             </p>
           </div>
           <ul className="landing-nots">
@@ -339,6 +348,9 @@ export default function LandingPage() {
         <nav aria-label="Footer">
           <Link to="/about">How it works</Link>
           <Link to="/terms">Terms</Link>
+          <a href={SOURCE_URL} target="_blank" rel="noopener noreferrer">
+            Source code
+          </a>
           <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>
         </nav>
       </footer>

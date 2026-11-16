@@ -49,7 +49,7 @@ html:has(.landing) { scroll-padding-top: 76px; }
 .landing-band { background: var(--surface); border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
 .landing-band-inner { max-width: 1200px; margin: 0 auto; padding: 72px 40px; box-sizing: border-box; display: flex; flex-direction: column; gap: 40px; }
 .landing-band h2 { font-family: var(--serif); font-weight: 400; font-size: 40px; line-height: 1.15; letter-spacing: -0.01em; max-width: 30ch; }
-.landing-points { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+.landing-points { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 48px; }
 .landing-points li { display: flex; flex-direction: column; gap: 8px; }
 .landing-points svg { color: var(--accent-text); margin-bottom: 4px; }
 .landing-points strong { font-size: 16px; font-weight: 600; }

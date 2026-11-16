@@ -24,6 +24,9 @@ export const KeyIcon = (p: P) => (
 export const LockIcon = (p: P) => (
   <svg {...base(p)}><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg>
 );
+export const CodeIcon = (p: P) => (
+  <svg {...base(p)}><path d="M8 7l-5 5 5 5" /><path d="M16 7l5 5-5 5" /><path d="M13.5 5l-3 14" /></svg>
+);
 export const ShieldIcon = (p: P) => (
   <svg {...base(p)}><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z" /></svg>
 );
